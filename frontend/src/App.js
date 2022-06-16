@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Routes } from "react-router-dom";
 import './App.css';
 
-class App extends Component {
-  createGame() {
-    fetch('/api/game', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true
-        }
-      }
-  ).then(function(res) {
-      res.json().then(log => {
-        
-      });
-      }).catch(error => console.log(error))
-  }
+import Home from "./components/home";
+import Game from "./components/game";
 
+class App extends Component {
   render() {
     return (
-      <div className="App">
-        <button onClick={this.createGame}>Create game</button>
-      </div>
+        <Router>
+          <Routes>
+              <Route path='/' element={<Home />}></Route>
+              <Route path='/game' element={<Game />}></Route>
+          </Routes>
+        </Router>
     );
   }
 

@@ -42,14 +42,15 @@ app.post("/api/game", async function(req, res) {
   // Testing game creation
   gameList = [];
 
-  var game = new Game("Dan");
-  var game2 = new Game("Jack");
+  var game = new Game("GameId");
+  game.setPlayers(req.body.name)
   gameList.push(game);
-  gameList.push(game2);
 
   gameList.forEach(element => {
     console.log(element)
   });
+
+  return res.json({gameId: game.getId()})
 })
 
 

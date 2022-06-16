@@ -6,13 +6,17 @@ class Game {
     host;
     createdAt;
     
-    constructor(id) {
-        this.id = id;
+    constructor() {
+        this.id = this.generateId();
         this.state = null;
         this.players = null;
         this.shareCode = null;
         this.host = null;
         this.createdAt = Date();
+    }
+
+    generateId() {
+        return Math.floor(100000 + Math.random() * 900000);
     }
 
     getId() {
