@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Routes, Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function Home() {
     let navigate = useNavigate();
@@ -23,16 +23,13 @@ function Home() {
         }
         ).then(async res => {
             await res.json().then(async log => {
-                //TODO: Only do the following if a success message is returned
-                navigate("/game", {state: {gameId: log.gameId}})
-                setGameId(log.gameId);
                 if (log.success) {
-                    
+                    navigate("/game", {state: {gameId: log.gameId}})
+                    setGameId(log.gameId);
                 }
-            });
+            }).catch(error => console.log(error));
         }).catch(error => console.log(error))
     }
-
 
     return (
         <div>
