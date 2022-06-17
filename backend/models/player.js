@@ -7,8 +7,9 @@ class Player {
     createdAt;
 
     constructor(name) {
+        this.id = null;
         this.name = name;
-        this.role = "None";
+        this.role = null;
         this.gameId = null;
         this.alive = false;
         this.createdAt = Date();
@@ -52,6 +53,10 @@ class Player {
 
     setAlive(alive) {
         this.alive = alive;
+    }
+
+    getCreatedAt(){
+        return this.createdAt;
     }
 }
 

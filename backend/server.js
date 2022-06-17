@@ -13,27 +13,44 @@ app.listen(port, () => {
 });
 
 
-// Testing player creation
-playerList = [];
+// // Testing player creation
+// playerList = [];
 
-var player = new Player("Dan");
-var player2 = new Player("Jack");
-playerList.push(player);
-playerList.push(player2);
+// var player = new Player("Dan");
+// var player2 = new Player("Jack");
+// playerList.push(player);
+// playerList.push(player2);
 
-playerList.forEach(element => {
-  console.log(element)
-});
+// playerList.forEach(element => {
+//   console.log(element)
+// });
 
-// Testing game creation
-gameList = [];
+// // Testing game creation
+// gameList = [];
 
-var game = new Game("Dan");
-var game2 = new Game("Jack");
-gameList.push(game);
-gameList.push(game2);
+// var game = new Game("Dan");
+// var game2 = new Game("Jack");
+// gameList.push(game);
+// gameList.push(game2);
 
-gameList.forEach(element => {
-  console.log(element)
-});
+// gameList.forEach(element => {
+//   console.log(element)
+// });
+
+// Route to create a new game
+app.post("/api/game", async function(req, res) {
+  // Testing game creation
+  gameList = [];
+
+  var game = new Game("GameId");
+  game.setPlayers(req.body.name)
+  gameList.push(game);
+
+  gameList.forEach(element => {
+    console.log(element)
+  });
+
+  return res.json({gameId: game.getId()})
+})
+
 
