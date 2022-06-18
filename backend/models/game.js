@@ -9,14 +9,18 @@ class Game {
     constructor() {
         this.id = this.generateId();
         this.state = null;
-        this.players = null;
+        this.players = [];
         this.shareCode = null;
         this.host = null;
         this.createdAt = Date();
     }
 
     generateId() {
-        return Math.floor(100000 + Math.random() * 900000);
+        return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    addPlayer(player) {
+        this.players.push(player);
     }
 
     getId() {

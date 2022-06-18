@@ -1,3 +1,8 @@
+* {
+    overflow-x: hidden;
+
+}
+
 body {
     text-align: center;
     background-color: #964f4cff;
@@ -12,7 +17,7 @@ body {
 }
 
 .logo {
-    width: 80vw;
+    max-width: 80vw;
 }
 .button {
     font-size: 28px;
@@ -24,7 +29,7 @@ body {
     border: 2px solid #696667ff;
     border-radius: 4px;
     position: relative;
-    min-width: 80vw;
+    width: 80vw;
     color: #696667ff;
 
     &.host {

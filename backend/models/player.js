@@ -7,12 +7,16 @@ class Player {
     createdAt;
 
     constructor(name) {
-        this.id = null;
+        this.id = this.generateId();
         this.name = name;
         this.role = null;
         this.gameId = null;
         this.alive = false;
         this.createdAt = Date();
+    }
+
+    generateId() {
+        return Math.floor(100000 + Math.random() * 900000);
     }
 
     getId() {
