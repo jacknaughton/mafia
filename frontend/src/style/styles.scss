@@ -1,0 +1,65 @@
+body {
+    text-align: center;
+    background-color: #964f4cff;
+}
+
+.white {
+    color: #ffffff;
+}
+
+.row {
+    height: 100vh;
+}
+
+.logo {
+    width: 80vw;
+}
+.button {
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 1px;
+    padding: 25px;
+    border: 2px solid #696667ff;
+    border-radius: 4px;
+    position: relative;
+    min-width: 80vw;
+    color: #696667ff;
+
+    &.host {
+        background-color: red;
+    }
+    &.join {
+        background-color: blue;
+    }
+    
+    &:active {
+        background: #696667ff;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+
+    }
+
+    &:hover {
+        background: #696667ff;
+        color: #ffffff;
+        border: 2px solid #ffffff;
+
+    }
+}
+
+
+
+input {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #696667ff;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 25px 50px;
+    border: 2px solid #696667ff;
+    min-width: 80vw;
+    cursor: text;
+}
