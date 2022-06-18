@@ -1,2 +1,2 @@
-# murder
-Based on the card game, Murder.
+# Mafia
+Based on the card game, Mafia.

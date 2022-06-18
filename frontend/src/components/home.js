@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { Component, useState } from 'react';
+import { BrowserRouter as Router, Route, Redirect, Routes, Link, useNavigate } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap"
+import '../style/styles.scss'
+import logo from '../images/mafia-logo.svg'
 
 function Home() {
     let navigate = useNavigate();
@@ -57,13 +60,26 @@ function Home() {
 
 
     return (
-        <div>
-            <input onChange={handleNameChange} value={name} placeholder="Name"></input>
-            <button onClick={createGame}>Create Game</button>
-
-            <input onChange={handleGameIdChange} value={gameId} placeholder="GameId"></input>
-            <button onClick={joinGame}>Join Game</button>
-        </div>
+        <Container>
+            <Row className='align-items-center'>
+                <Col xs={12}>
+                    <img className="logo" src={logo} alt='Mafia' />
+                </Col>
+                <Col xs={12}>
+                <input onChange={handleNameChange} value={name} placeholder="Name"></input>
+                </Col>
+                <Col xs={12}>
+                <button onClick={createGame} class="button host">Create Game</button>
+                </Col>
+                <Col xs={12}>
+                <input onChange={handleGameIdChange} value={gameId} placeholder="GameId"></input>
+                <button onClick={joinGame}>Join Game</button>
+                </Col>
+                <Col xs={12}>
+                    <p className="white">Created by Tom, Dan &amp; Jack</p>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
