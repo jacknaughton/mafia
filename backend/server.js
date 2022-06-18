@@ -13,13 +13,14 @@ const Player = require('./models/player')
 const Game = require('./models/game')
 
 gameList = new Map();
-playerList = [];
+playerList = new Map();
 
 io.on("connection", (socket) => {
   console.log("New client connected");
 
   socket.on("joining-game", (socket) => {
     console.log("New player joining game with id of: " + socket.query.gameId);
+    console.log(gameList.get(socket.query.gameId).getPlayers());
     io.emit("player-list", gameList.get(socket.query.gameId).getPlayers());
 
   })
@@ -34,18 +35,33 @@ http.listen(port, () => {
 });
 
 
+//TODO: for the following routes, we need to check if a player with the same ID exists
+
 // Route to create a new game
-app.post("/api/game", async function(req, res) {
+app.post("/api/game/create", async function(req, res) {
   // Create a new player
   var player = new Player(req.body.name);
   var game = new Game("GameId");
 
   player.setGameId(game.getId());
   game.addPlayer(player);
+  game.setHost(player.getId());
 
   // Add game and player to global list
-  playerList.push(player);
+  playerList.set(player.getId(), player);
   gameList.set(game.getId(), game);
 
   return res.json({gameId: game.getId(), success: true})
+})
+
+// Route to join a game
+app.post("/api/game/join", async function(req, res) {
+  // Create a new player
+  var player = new Player(req.body.name);
+  playerList.set(player.getId(), player);
+
+  // Add player to game
+  gameList.get(req.body.gameId).addPlayer(player);
+  
+  return res.json({gameId: req.body.gameId, success: true})
 })
