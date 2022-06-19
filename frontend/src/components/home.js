@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Routes, Link, useNavigate } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap"
+import { Row, Col } from "react-bootstrap"
 import '../style/styles.scss'
 import logo from '../images/mafia-logo.svg'
 
@@ -8,14 +8,6 @@ function Home() {
     let navigate = useNavigate();
     const [name, setName] = useState('');
     const [gameId, setGameId] = useState('');
-
-    const handleNameChange = e => {
-        setName(e.target.value);
-    }
-
-    const handleGameIdChange = e => {
-        setGameId(e.target.value);
-    }
 
     const createGame = async () => {
         await fetch('/api/game/create', {
@@ -31,7 +23,7 @@ function Home() {
         ).then(async res => {
             await res.json().then(async log => {
                 if (log.success) {
-                    navigate("/game", {state: {gameId: log.gameId}})
+                    navigate("/game", { state: { gameId: log.gameId } })
                 }
             }).catch(error => console.log(error));
         }).catch(error => console.log(error))
@@ -50,7 +42,7 @@ function Home() {
         }
         ).then(async res => {
             await res.json().then(async log => {
-                navigate("/game", {state: {gameId: log.gameId}})
+                navigate("/game", { state: { gameId: log.gameId } })
                 // if (log.success) {
                 //     navigate("/game", {state: {gameId: log.gameId}})
                 // }
@@ -58,28 +50,29 @@ function Home() {
         }).catch(error => console.log(error))
     }
 
-
     return (
-        <Container>
+        <div className='container'>
             <Row className='align-items-center'>
                 <Col xs={12}>
                     <img className="logo" src={logo} alt='Mafia' />
                 </Col>
                 <Col xs={12}>
-                <input onChange={handleNameChange} value={name} placeholder="Name"></input>
+                    <input onChange={e => setName(e.target.value)} value={name} id="name" placeholder="Name"></input>
                 </Col>
                 <Col xs={12}>
-                <button onClick={createGame} class="button host">Create Game</button>
+                    <button onClick={createGame} disabled={!name} id="host" className="button host">Create Game</button>
                 </Col>
                 <Col xs={12}>
-                <input onChange={handleGameIdChange} value={gameId} placeholder="GameId"></input>
-                <button onClick={joinGame}>Join Game</button>
+                    <input onChange={e => setGameId(e.target.value)} value={gameId} placeholder="Game Code"></input>
+                </Col>
+                <Col xs={12}>
+                    <button onClick={joinGame} disabled={!gameId || !name} className="button join">Join Game</button>
                 </Col>
                 <Col xs={12}>
                     <p className="white">Created by Tom, Dan &amp; Jack</p>
                 </Col>
             </Row>
-        </Container>
+        </div>
     )
 }
 

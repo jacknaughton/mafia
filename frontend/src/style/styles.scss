@@ -7,59 +7,108 @@ body {
     color: #ffffff;
 }
 
+p {
+    margin-bottom: 0;
+}
+
+.container {
+    max-width: 576px;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+}
+
 .row {
     height: 100vh;
 }
 
 .logo {
-    width: 80vw;
+    width: 80%;
 }
+
 .button {
-    font-size: 28px;
+    font-size: 20px;
     line-height: 1;
-    font-weight: 500;
+    font-weight: 700;
+    color: #000000;
     text-align: center;
     letter-spacing: 1px;
-    padding: 25px;
-    border: 2px solid #696667ff;
-    border-radius: 4px;
+    border: 2px solid #000000;
+    border-radius: 8px;
     position: relative;
-    min-width: 80vw;
-    color: #696667ff;
+    min-width: 80%;
+    max-height: 16vh;
+    min-height: 8vh;
+    cursor: pointer;
 
-    &.host {
-        background-color: red;
-    }
-    &.join {
-        background-color: blue;
-    }
-    
-    &:active {
-        background: #696667ff;
-        color: #ffffff;
-        border: 2px solid #ffffff;
-
+    &:disabled {
+        background-color: #964f4cff;    
     }
 
-    &:hover {
-        background: #696667ff;
-        color: #ffffff;
-        border: 2px solid #ffffff;
+    &:not(:disabled) {
+        background-color: #8E9D61;
 
+        &:hover {
+            background: #7b9727;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+
+            &::after {
+                width: 30px;
+                height: 30px;
+                border-color: #000000;
+            }
+
+            &::before {
+                width: 30px;
+                height: 30px;
+                border-color: #000000;
+            }
+        }
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        transition: .5s;
+        top: -9px;
+        left: -9px;
+        border-top: 3px solid transparent;
+        border-left: 3px solid transparent;
+    }
+
+    &::before {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        transition: .5s;
+        bottom: -9px;
+        right: -9px;
+        border-bottom: 3px solid transparent;
+        border-right: 3px solid transparent;
     }
 }
-
-
 
 input {
     font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    color: #696667ff;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: #000000;
     text-align: center;
     background-color: #ffffff;
-    padding: 25px 50px;
-    border: 2px solid #696667ff;
-    min-width: 80vw;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    width: 80%;
+    max-height: 16vh;
+    min-height: 8vh;
     cursor: text;
+
+    &:hover {
+        background: #ffffff;
+        color: #000000;
+        border: 2px solid #000000;
+    }
 }
